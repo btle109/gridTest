@@ -1,0 +1,119 @@
+[gd_scene load_steps=15 format=3 uid="uid://beh1bcuvryhxi"]
+
+[ext_resource type="PackedScene" uid="uid://bs6v2yt4d6qsm" path="res://char.tscn" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://cd81reodte14h" path="res://autumn_field_puresky_2k.hdr" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://d247b4dcb8xbt" path="res://label.gd" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bl37crd3pdbv6" path="res://pressure_plate.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://ct1rs68xfmnmm" path="res://block.gd" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cga1y712yw0ii" path="res://button.tscn" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://bejxq5fphc1wp" path="res://buttonCube.gd" id="7_272bh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0xm2m"]
+panorama = ExtResource("2_0xm2m")
+
+[sub_resource type="Sky" id="Sky_ig7tw"]
+sky_material = SubResource("PanoramaSkyMaterial_0xm2m")
+
+[sub_resource type="Environment" id="Environment_0xm2m"]
+background_mode = 2
+sky = SubResource("Sky_ig7tw")
+
+[sub_resource type="BoxMesh" id="BoxMesh_0xm2m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+size = Vector3(1, 3, 9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1bvp3"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(25, 0, 0, 0, 0.03, 0, 0, 0, 25, 0, 0, 0)
+mesh = SubResource("BoxMesh_7dm0k")
+
+[node name="char" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0xm2m")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(0.105, 0, 0, 0, 3.8, 0, 0, 0, 8.52, 0, 0.4, 0)
+mesh = SubResource("BoxMesh_0xm2m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="Area3D2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Area3D2"]
+transform = Transform3D(0.105, 0, 0, 0, 3.8, 0, 0, 0, 8.52, 0, 0.4, 0)
+mesh = SubResource("BoxMesh_0xm2m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1112.0
+offset_bottom = -608.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.575
+text = "LOC:"
+script = ExtResource("3_h2yge")
+
+[node name="pressurePlate" parent="." instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
+
+[node name="Block" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -9)
+mesh = SubResource("BoxMesh_1bvp3")
+script = ExtResource("5_lquwl")
+
+[node name="Area3D3" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -11)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Area3D3"]
+transform = Transform3D(0.105, 0, 0, 0, 3.8, 0, 0, 0, 8.52, 0, 0.4, 0)
+mesh = SubResource("BoxMesh_0xm2m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="Button" parent="." instance=ExtResource("6_7mycd")]
+transform = Transform3D(-1.22392e-08, 0, 0.28, 0, 0.28, 0, -0.28, 0, -1.22392e-08, -6.95, 1.4, -1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 0)
+
+[node name="Block2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.5, -5.6)
+mesh = SubResource("BoxMesh_1bvp3")
+skeleton = NodePath("../Block")
+script = ExtResource("7_272bh")
+
+[connection signal="plateDown" from="pressurePlate" to="Block" method="_on_pressure_plate_plate_down"]
+[connection signal="plateUp" from="pressurePlate" to="Block" method="_on_pressure_plate_plate_up"]
+[connection signal="button" from="Button/Area3D" to="Block2" method="_on_area_3d_button"]
+
+[editable path="Button"]

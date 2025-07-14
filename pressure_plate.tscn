@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl37crd3pdbv6"]
+
+[ext_resource type="Script" uid="uid://cte76426if4oj" path="res://pressure_plate.gd" id="1_uot4y"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_k6yph"]
+
+[node name="pressurePlate" type="Node3D"]
+script = ExtResource("1_uot4y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.07, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_k6yph")
+
+[node name="weight" type="RayCast3D" parent="."]
+target_position = Vector3(0, 2, 0)
+hit_from_inside = true

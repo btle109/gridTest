@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://cga1y712yw0ii"]
+
+[ext_resource type="Script" uid="uid://yfkbm27feiok" path="res://button.gd" id="1_r04n3"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0vvm8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_r04n3"]
+height = 1.6625
+radius = 1.0
+
+[sub_resource type="Animation" id="Animation_0vvm8"]
+resource_name = "push"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.0666667, 1, 0, 0, -0.3)
+
+[sub_resource type="Animation" id="Animation_r04n3"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n4tde"]
+_data = {
+&"RESET": SubResource("Animation_r04n3"),
+&"push": SubResource("Animation_0vvm8")
+}
+
+[node name="Button" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 3
+script = ExtResource("1_r04n3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -6.55671e-09, -1, 0, 0.15, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_0vvm8")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -2.10361e-08, 0.48125)
+shape = SubResource("CylinderShape3D_r04n3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_n4tde")
+}
