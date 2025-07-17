@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://beh1bcuvryhxi"]
 
-[ext_resource type="PackedScene" uid="uid://bs6v2yt4d6qsm" path="res://char.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bs6v2yt4d6qsm" path="res://player/char.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cd81reodte14h" path="res://autumn_field_puresky_2k.hdr" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://d247b4dcb8xbt" path="res://label.gd" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bl37crd3pdbv6" path="res://pressure_plate.tscn" id="4_1bvp3"]

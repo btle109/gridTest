@@ -1,0 +1,208 @@
+[gd_scene load_steps=14 format=3 uid="uid://bs6v2yt4d6qsm"]
+
+[ext_resource type="Script" uid="uid://crdonys5n3juq" path="res://player/char.gd" id="1_njpxk"]
+[ext_resource type="Script" uid="uid://0ftllctd0qpf" path="res://camera_3d.gd" id="2_hs5vj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5k12k"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_njpxk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2yyd8"]
+no_depth_test = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2yyd8"]
+
+[sub_resource type="Animation" id="Animation_njpxk"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody3D/Camera3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.6, 0)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody3D/sword")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7, 0, -1)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterBody3D/sword:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5k12k"]
+resource_name = "bob"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody3D/Camera3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.6, 0, 0.133333, 1, 0, 0.7, 0, 0.3, 1, 0, 0.6, 0)
+
+[sub_resource type="Animation" id="Animation_jk26w"]
+resource_name = "swing left"
+length = 0.305
+step = 0.0328
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody3D/sword")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.0333333, 1, 0.7, 0, -1, 0.3, 1, -1.56286, 0, -1)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody3D/sword:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2yyd8"]
+resource_name = "swing right"
+length = 0.305
+step = 0.0328
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody3D/sword")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.0333333, 1, -0.562857, 0, -1, 0.266667, 1, 1.43714, 0, -1)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody3D/sword:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_t1xym"]
+resource_name = "swing up"
+length = 0.305
+step = 0.0328
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody3D/sword")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.062857, 0, -1, 0.133333, 1, -0.062857, 0, -1.7)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody3D/sword:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_tbgd1"]
+resource_name = "swing down"
+length = 0.305
+step = 0.0328
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody3D/sword")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.062857, 1, -1, 0.233333, 1, -0.062857, -1, -1)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody3D/sword:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ncbi3"]
+_data = {
+&"RESET": SubResource("Animation_njpxk"),
+&"bob": SubResource("Animation_5k12k"),
+&"swing down": SubResource("Animation_tbgd1"),
+&"swing left": SubResource("Animation_jk26w"),
+&"swing right": SubResource("Animation_2yyd8"),
+&"swing up": SubResource("Animation_t1xym")
+}
+
+[node name="char" type="Node3D"]
+script = ExtResource("1_njpxk")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_5k12k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_njpxk")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+script = ExtResource("2_hs5vj")
+
+[node name="frontRay" type="RayCast3D" parent="CharacterBody3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.5, 0)
+target_position = Vector3(0, 0, 2)
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="backRay" type="RayCast3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, 0, 2)
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="leftRay" type="RayCast3D" parent="CharacterBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.5, 0)
+target_position = Vector3(0, 0, 2)
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="rightRay" type="RayCast3D" parent="CharacterBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.5, 0)
+target_position = Vector3(0, 0, 2)
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="sword" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.3, 0, 0, 0, -4.37114e-08, 0.3, 0, -1, -1.31134e-08, 0.7, 0, -1)
+visible = false
+material_override = SubResource("StandardMaterial3D_2yyd8")
+mesh = SubResource("CapsuleMesh_2yyd8")
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ncbi3")
+}
