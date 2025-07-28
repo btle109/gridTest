@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://beh1bcuvryhxi"]
+[gd_scene load_steps=16 format=3 uid="uid://beh1bcuvryhxi"]
 
 [ext_resource type="PackedScene" uid="uid://bs6v2yt4d6qsm" path="res://player/char.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cd81reodte14h" path="res://autumn_field_puresky_2k.hdr" id="2_0xm2m"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://ct1rs68xfmnmm" path="res://block.gd" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cga1y712yw0ii" path="res://button.tscn" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://bejxq5fphc1wp" path="res://buttonCube.gd" id="7_272bh"]
+[ext_resource type="MeshLibrary" uid="uid://dq7oq0uapxve6" path="res://wall/wallLib3d.tres" id="8_5vw27"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
 
@@ -32,9 +33,6 @@ size = Vector3(1, 3, 9)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(25, 0, 0, 0, 0.03, 0, 0, 0, 25, 0, 0, 0)
 mesh = SubResource("BoxMesh_7dm0k")
-
-[node name="char" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0xm2m")
@@ -111,6 +109,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.5, -5.6)
 mesh = SubResource("BoxMesh_1bvp3")
 skeleton = NodePath("../Block")
 script = ExtResource("7_272bh")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("8_5vw27")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65528, 1, 1, 65528, 0, 1, 65528, 65535, 1, 65528, 65534, 1, 65528, 65533, 1, 65528, 2, 1, 65528, 4, 1, 65528, 5, 1048578, 65529, 5, 655362, 65529, 4, 655361, 65529, 3, 655361, 65529, 2, 655361, 65529, 1, 655361, 65529, 0, 655361, 65529, 65535, 655361, 65528, 65532, 2, 65529, 65532, 1441793, 65530, 65534, 1048577, 65529, 65534, 655363, 65529, 65533, 655360, 65530, 65533, 655360, 65530, 65532, 1441793, 65528, 3, 1)
+}
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 4
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(288, 162)
+render_target_update_mode = 4
+
+[node name="char" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [connection signal="plateDown" from="pressurePlate" to="Block" method="_on_pressure_plate_plate_down"]
 [connection signal="plateUp" from="pressurePlate" to="Block" method="_on_pressure_plate_plate_up"]

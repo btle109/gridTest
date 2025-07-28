@@ -17,29 +17,29 @@ length = 0.001
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody3D/Camera3D")
+tracks/0/path = NodePath("CharacterBody3D/sword")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.6, 0)
-tracks/1/type = "position_3d"
+tracks/0/keys = PackedFloat32Array(0, 1, 0.7, 0, -1)
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterBody3D/sword")
+tracks/1/path = NodePath("CharacterBody3D/sword:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.7, 0, -1)
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CharacterBody3D/sword:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterBody3D/Camera3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0.0333333, 1, 0, 0.4, 0)
 
 [sub_resource type="Animation" id="Animation_5k12k"]
 resource_name = "bob"
@@ -49,7 +49,31 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("CharacterBody3D/Camera3D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.6, 0, 0.133333, 1, 0, 0.7, 0, 0.3, 1, 0, 0.6, 0)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.4, 0, 0.133333, 1, 0, 0.6, 0, 0.3, 1, 0, 0.4, 0)
+
+[sub_resource type="Animation" id="Animation_tbgd1"]
+resource_name = "swing down"
+length = 0.305
+step = 0.0328
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody3D/sword")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.062857, 1, -1, 0.233333, 1, -0.062857, -1, -1)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody3D/sword:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_jk26w"]
 resource_name = "swing left"
@@ -123,30 +147,6 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_tbgd1"]
-resource_name = "swing down"
-length = 0.305
-step = 0.0328
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody3D/sword")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -0.062857, 1, -1, 0.233333, 1, -0.062857, -1, -1)
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CharacterBody3D/sword:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.266667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ncbi3"]
 _data = {
 &"RESET": SubResource("Animation_njpxk"),
@@ -167,10 +167,6 @@ mesh = SubResource("CapsuleMesh_5k12k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_njpxk")
-
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
-script = ExtResource("2_hs5vj")
 
 [node name="frontRay" type="RayCast3D" parent="CharacterBody3D"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.5, 0)
@@ -201,6 +197,10 @@ transform = Transform3D(0.3, 0, 0, 0, -4.37114e-08, 0.3, 0, -1, -1.31134e-08, 0.
 visible = false
 material_override = SubResource("StandardMaterial3D_2yyd8")
 mesh = SubResource("CapsuleMesh_2yyd8")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+script = ExtResource("2_hs5vj")
 
 [node name="animation" type="AnimationPlayer" parent="."]
 libraries = {

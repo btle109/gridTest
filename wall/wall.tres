@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://6lna2wg1ea1g"]
+
+[ext_resource type="Texture2D" uid="uid://byv4r61efw3vf" path="res://import/wall1_dungeon1_alb.png" id="1_8rtfa"]
+[ext_resource type="Texture2D" uid="uid://daeag0wh274h5" path="res://import/dungeon1_nrm.png" id="2_0vk7b"]
+
+[resource]
+resource_name = "wall"
+cull_mode = 2
+albedo_texture = ExtResource("1_8rtfa")
+albedo_texture_force_srgb = true
+roughness = 0.9
+normal_enabled = true
+normal_scale = 0.25
+normal_texture = ExtResource("2_0vk7b")
+texture_filter = 0
