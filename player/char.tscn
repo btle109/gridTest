@@ -170,25 +170,25 @@ shape = SubResource("CapsuleShape3D_njpxk")
 
 [node name="frontRay" type="RayCast3D" parent="CharacterBody3D"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.5, 0)
-target_position = Vector3(0, 0, 2)
+target_position = Vector3(0, 0, 3)
 hit_from_inside = true
 collide_with_areas = true
 
 [node name="backRay" type="RayCast3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 0.5, 0)
-target_position = Vector3(0, 0, 2)
+target_position = Vector3(0, 0, 3)
 hit_from_inside = true
 collide_with_areas = true
 
 [node name="leftRay" type="RayCast3D" parent="CharacterBody3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.5, 0)
-target_position = Vector3(0, 0, 2)
+target_position = Vector3(0, 0, 3)
 hit_from_inside = true
 collide_with_areas = true
 
 [node name="rightRay" type="RayCast3D" parent="CharacterBody3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.5, 0)
-target_position = Vector3(0, 0, 2)
+target_position = Vector3(0, 0, 3)
 hit_from_inside = true
 collide_with_areas = true
 
@@ -206,3 +206,7 @@ script = ExtResource("2_hs5vj")
 libraries = {
 &"": SubResource("AnimationLibrary_ncbi3")
 }
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_energy = 2.0
