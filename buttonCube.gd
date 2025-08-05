@@ -1,4 +1,5 @@
-extends MeshInstance3D
+extends Area3D
 
 func _on_area_3d_button() -> void:
-	visible = false
+	$Block2.visible = false
+	$CollisionShape3D.disabled = true
