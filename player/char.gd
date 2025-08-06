@@ -7,11 +7,15 @@ const TRAVEL_TIME := 0.3
 @onready var left_ray := $CharacterBody3D/leftRay
 @onready var right_ray := $CharacterBody3D/rightRay
 @onready var animation := $animation
+@export var enemy: CharacterBody3D = null
+
+var HP = 100
 var dirVec := Vector2.ZERO
 var dragging := false
 var swing_ready := true
 const SWING_THRESHOLD := 40 
 var tween : Tween
+var in_range = false
 
 func snap_to_grid(pos: Vector3, grid_size: float = 2.0) -> Vector3:
 	return Vector3(
@@ -58,14 +62,17 @@ func process_swing():
 
 
 func _physics_process(_delta):
+	if HP <= 0 or  Input.is_action_pressed("Reset"):
+		HP = 100
+		get_tree().reload_current_scene()
+	if Input.is_action_pressed("Quit"):
+		get_tree().quit()
 	if tween is Tween:
 		if tween.is_running():
 			return
 		if animation.is_playing() and (animation.current_animation == "swing left" or animation.current_animation == "swing right" or animation.current_animation == "swing down" or animation.current_animation == "swing up"):
 			return
-	#if right_ray.is_colliding():
-	#	var collider = right_ray.get_collider()
-	#	print("Right Hit object: ", collider.name)
+
 	if Input.is_action_pressed("forward") and not front_ray.is_colliding():
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "transform", transform.translated_local(Vector3.FORWARD * 2), TRAVEL_TIME)
@@ -93,3 +100,17 @@ func _physics_process(_delta):
 	if Input.is_action_pressed("turnRight"):
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "transform:basis", transform.basis.rotated(Vector3.UP, -PI / 2), TRAVEL_TIME)
+
+func hurt(dmg, _atk, _def) -> void:
+	HP -= dmg
+	print("ow")
+	pass
+
+func _on_attack_range_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Enemy"):
+		body.hurt(10, 0.6, 0.3)
+		in_range = true
+
+func _on_attack_range_body_exited(body: Node3D) -> void:
+	if body.is_in_group("Enemy"):
+		in_range = false
