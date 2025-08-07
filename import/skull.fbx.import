@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://etfqt3p6lybq"
-path="res://.godot/imported/skullowpoly.fbx-fd31e599e1ee65457ec4303c81c5b26f.scn"
+uid="uid://cf4i8dkcjh4qu"
+path="res://.godot/imported/skull.fbx-a02e5a72c46daad8337b2671e6452d82.scn"
 
 [deps]
 
-source_file="res://import/skullowpoly.fbx"
-dest_files=["res://.godot/imported/skullowpoly.fbx-fd31e599e1ee65457ec4303c81c5b26f.scn"]
+source_file="res://import/skull.fbx"
+dest_files=["res://.godot/imported/skull.fbx-a02e5a72c46daad8337b2671e6452d82.scn"]
 
 [params]
 
