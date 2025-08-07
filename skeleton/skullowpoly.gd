@@ -25,12 +25,14 @@ func _physics_process(_delta: float) -> void:
 			return
 
 		$AnimationPlayer.play("skelChar|Walk")
+		
 		if (in_range):
 			navigation_agent.set_target_position(player.global_position)
 		else:
 			navigation_agent.set_target_position(origin.global_position)
-
+			
 		if navigation_agent.is_navigation_finished():
+			$AnimationPlayer.play("skelChar|rest")
 			return
 		var next_position: Vector3 = navigation_agent.get_next_path_position()
 		var direction = global_position.direction_to(next_position)
@@ -96,6 +98,5 @@ func attack() -> void:
 
 func _on_timer_timeout() -> void:
 	if (randi()%100+1 < 40):
-		if (!$AudioStreamPlayer3D.is_playing()):
-				$AudioStreamPlayer3D.stream = sound2
-				$AudioStreamPlayer3D.play()
+		$AudioStreamPlayer3D.stream = sound2
+		$AudioStreamPlayer3D.play()
