@@ -9,6 +9,9 @@ const TRAVEL_TIME := 0.3
 @onready var animation := $animation
 @export var enemy: CharacterBody3D = null
 
+const DEF_CHANCE = 40
+const ATK_CHANCE = 70
+
 var HP = 100
 var dirVec := Vector2.ZERO
 var dragging := false
@@ -16,6 +19,7 @@ var swing_ready := true
 const SWING_THRESHOLD := 40 
 var tween : Tween
 var in_range = false
+var sound = preload("res://sound/sound2.mp3")
 
 func snap_to_grid(pos: Vector3, grid_size: float = 2.0) -> Vector3:
 	return Vector3(
@@ -58,6 +62,10 @@ func process_swing():
 			animation.play("swing down")
 		else:
 			animation.play("swing up")
+	if(!in_range):
+		sound = load("res://sound/sound2.mp3")
+		$AudioStreamPlayer.stream = sound
+	$AudioStreamPlayer.play()
 	dirVec = Vector2.ZERO
 
 
@@ -77,6 +85,7 @@ func _physics_process(_delta):
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "transform", transform.translated_local(Vector3.FORWARD * 2), TRAVEL_TIME)
 		animation.play("bob")
+
 		
 	if Input.is_action_pressed("back") and not back_ray.is_colliding():
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
@@ -101,14 +110,34 @@ func _physics_process(_delta):
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "transform:basis", transform.basis.rotated(Vector3.UP, -PI / 2), TRAVEL_TIME)
 
-func hurt(dmg, _atk, _def) -> void:
-	HP -= dmg
-	print("ow")
-	pass
+func hurt(dmg) -> void:
+	var prob = randi()%100 + 1
+	var hitsound
+	if (prob < DEF_CHANCE):
+		hitsound = load("res://sound/swordclash.mp3")
+		$hitsounds.stream = hitsound
+		$hitsounds.play()
+		HP -= 0.4 * dmg + randi()%4
+		print("PLAYER ", HP, "ENEMY ATTACK DEFENDED")
+	else:
+		hitsound = load("res://sound/sound.wav")
+		$hitsounds.stream = hitsound
+		$hitsounds.play()
+		HP -= dmg + randi()%7
+		print("PLAYER ", HP, " ENEMY ATTACK SUCCESS")
+		#screen blur/red/shake
+
 
 func _on_attack_range_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Enemy"):
-		body.hurt(10, 0.6, 0.3)
+		var prob = randi()%100 + 1
+		if (prob < ATK_CHANCE):
+			sound = load("res://sound/smashsound.mp3")
+			body.hurt(10)
+		else:
+			sound = load("res://sound/sound2.mp3")
+		$AudioStreamPlayer.stream = sound
+		$AudioStreamPlayer.play()
 		in_range = true
 
 func _on_attack_range_body_exited(body: Node3D) -> void:

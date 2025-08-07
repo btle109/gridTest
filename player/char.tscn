@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bs6v2yt4d6qsm"]
+[gd_scene load_steps=15 format=3 uid="uid://bs6v2yt4d6qsm"]
 
 [ext_resource type="Script" uid="uid://crdonys5n3juq" path="res://player/char.gd" id="1_njpxk"]
 [ext_resource type="Script" uid="uid://0ftllctd0qpf" path="res://camera_3d.gd" id="2_hs5vj"]
 [ext_resource type="ArrayMesh" uid="uid://bhplnxrtp8qly" path="res://player/swordmesh.res" id="2_jk26w"]
+[ext_resource type="AudioStream" uid="uid://cewooktn0i7rf" path="res://sound/concrete-footsteps-6752.mp3" id="4_t1xym"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5k12k"]
 
@@ -72,6 +73,21 @@ tracks/0/path = NodePath("CharacterBody3D/Camera3D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.4, 0, 0.133333, 1, 0, 0.6, 0, 0.3, 1, 0, 0.4, 0)
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 59.3252,
+"start_offset": 0.0,
+"stream": ExtResource("4_t1xym")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_tbgd1"]
 resource_name = "swing down"
@@ -341,6 +357,10 @@ collision_layer = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -1.9)
 shape = SubResource("BoxShape3D_jk26w")
 disabled = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="hitsounds" type="AudioStreamPlayer3D" parent="."]
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

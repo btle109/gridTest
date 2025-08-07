@@ -3,11 +3,15 @@ extends CharacterBody3D
 @export var MoveSpeed: float = 3.0
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 var is_attacking = false
+const DEF_CHANCE = 50
+const ATK_CHANCE = 70
 var player: Node3D = null
 var origin: Node3D = null
 var in_range = false
 var alive = true
 var HP = 50
+var sound = preload("res://sound/skeletonscream.mp3")
+var sound2 = preload("res://sound/skeletonscream2.mp3")
 
 func _ready() -> void:
 	player = get_tree().get_nodes_in_group("Player")[0]
@@ -19,6 +23,7 @@ func _physics_process(_delta: float) -> void:
 	if alive:
 		if is_attacking:
 			return
+
 		$AnimationPlayer.play("skelChar|Walk")
 		if (in_range):
 			navigation_agent.set_target_position(player.global_position)
@@ -62,12 +67,35 @@ func _on_enemy_range_body_exited(body: Node3D) -> void:
 	if body.is_in_group("Player"):
 		in_range = false
 
-func hurt(dmg, _atk, _def) -> void:
-	HP -= dmg
+func hurt(dmg) -> void:
+	#player successful attack
+	var prob = randi()%100 + 1
+	var hitsound
+	if (prob < DEF_CHANCE):
+		hitsound = load("res://sound/swordclash.mp3")
+		$hitsounds.stream = hitsound
+		$hitsounds.play()
+		HP -= 0.4 * dmg + randi()%4
+		print("ENEMY ", HP, " PLAYER ATTACK DEFENDED")
+	else:
+		hitsound = load("res://sound/smashsound.mp3")
+		$hitsounds.stream = hitsound
+		#play enemy stun anim
+		$hitsounds.play()
+		HP -= dmg + randi()%7
+		print("ENEMY ", HP, " PLAYER ATTACK SUCCESS")
 	if (HP <= 0):
 		alive = false
 	
 func attack() -> void:
 	if (is_attacking):
-		print("ow")
-		player.hurt(10,0.6,0.3)
+		if (!$AudioStreamPlayer3D.is_playing()):
+			$AudioStreamPlayer3D.stream = sound
+			$AudioStreamPlayer3D.play()
+		player.hurt(10)
+
+func _on_timer_timeout() -> void:
+	if (randi()%100+1 < 40):
+		if (!$AudioStreamPlayer3D.is_playing()):
+				$AudioStreamPlayer3D.stream = sound2
+				$AudioStreamPlayer3D.play()
