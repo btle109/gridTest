@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=4 uid="uid://bk4ubkqky5tfl"]
+[gd_scene load_steps=17 format=4 uid="uid://bk4ubkqky5tfl"]
 
+[ext_resource type="Script" uid="uid://cwij0r573i0du" path="res://prop/torch/torch.gd" id="1_5sii8"]
 [ext_resource type="Texture2D" uid="uid://c511epxd6nkqc" path="res://prop/torch/torch_12.png" id="1_oi0ma"]
 [ext_resource type="Texture2D" uid="uid://drc5a8acbd6wr" path="res://prop/torch/torch_torch_albpix.png" id="2_siid4"]
 [ext_resource type="Texture2D" uid="uid://1ftmdwgopkyo" path="res://prop/torch/torch_torch_mtl.png" id="3_inpmc"]
@@ -14,8 +15,8 @@ cull_mode = 2
 albedo_texture = ExtResource("1_oi0ma")
 roughness = 0.5
 emission_enabled = true
-emission = Color(0.909073, 0.410304, 0.209247, 1)
-emission_energy_multiplier = 4.3
+emission = Color(0.621591, 0.139941, 0, 1)
+emission_energy_multiplier = 8.08
 emission_operator = 1
 emission_texture = ExtResource("1_oi0ma")
 texture_repeat = false
@@ -160,11 +161,16 @@ _data = {
 }
 
 [node name="torch2" type="Node3D"]
+script = ExtResource("1_5sii8")
 
 [node name="fire" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.439593, 0)
 mesh = SubResource("ArrayMesh_a1ogd")
 skeleton = NodePath("")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="fire"]
+light_color = Color(0.754392, 0.464463, 0.263509, 1)
+light_energy = 2.0
 
 [node name="torch" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

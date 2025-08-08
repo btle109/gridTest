@@ -86,14 +86,15 @@ libraries = {
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-light_energy = 1.25
-omni_range = 4.0
+light_volumetric_fog_energy = 1.25
+omni_range = 3.75
 
 [node name="AttackRange" type="Area3D" parent="."]
 collision_layer = 4
 
 [node name="AtkCol" type="CollisionShape3D" parent="AttackRange"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -1.9)
+visible = false
 shape = SubResource("BoxShape3D_jk26w")
 disabled = true
 
