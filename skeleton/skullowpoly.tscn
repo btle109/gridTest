@@ -633,7 +633,7 @@ bones/30/parent = 0
 bones/30/rest = Transform3D(-0.997586, -0.0695377, 0.000161758, 0.0695081, -0.997211, -0.0271758, 0.00205106, -0.0270988, 0.999632, 0.0451604, -0.0177363, -0.00606412)
 bones/30/enabled = true
 bones/30/position = Vector3(0.0451604, -0.0177363, -0.00606412)
-bones/30/rotation = Quaternion(0.012466, 0.0307574, 0.985537, -0.166179)
+bones/30/rotation = Quaternion(0.0124661, 0.0307574, 0.985537, -0.166179)
 bones/30/scale = Vector3(1.00001, 1, 1)
 bones/31/name = "mixamorig_LeftLeg"
 bones/31/parent = 30
@@ -783,7 +783,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1.4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1.4)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.999
+wait_time = 8.0
 autostart = true
 
 [node name="screaming" type="AudioStreamPlayer3D" parent="."]
@@ -799,4 +799,6 @@ shape = SubResource("BoxShape3D_4kkxq")
 disabled = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="View" to="." method="_on_attack_zone_body_entered"]
+[connection signal="body_exited" from="View" to="." method="_on_attack_zone_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

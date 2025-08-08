@@ -9,8 +9,8 @@ const TRAVEL_TIME := 0.3
 @onready var animation := $animation
 @export var enemy: CharacterBody3D = null
 
-const DEF_CHANCE = 40
-const ATK_CHANCE = 70
+const DEF_CHANCE = 45
+const ATK_CHANCE = 60
 
 var HP = 100
 var dirVec := Vector2.ZERO
@@ -114,7 +114,8 @@ func hurt(dmg) -> void:
 	var prob = randi()%100 + 1
 	var hitsound
 	if (prob < DEF_CHANCE):
-		hitsound = load("res://sound/swordclash.mp3")
+		hitsound = load("res://sound/swordclashshort.mp3")
+		$hitsounds.stop()
 		$hitsounds.stream = hitsound
 		$hitsounds.play()
 		HP -= 0.4 * dmg + randi()%4
@@ -125,6 +126,7 @@ func hurt(dmg) -> void:
 		$hitsounds.play()
 		HP -= dmg + randi()%7
 		print("PLAYER ", HP, " ENEMY ATTACK SUCCESS")
+		$hurt.play("playeranim/hurt")
 		#screen blur/red/shake
 
 

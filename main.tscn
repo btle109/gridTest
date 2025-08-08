@@ -1,14 +1,15 @@
-[gd_scene load_steps=20 format=3 uid="uid://beh1bcuvryhxi"]
+[gd_scene load_steps=21 format=3 uid="uid://beh1bcuvryhxi"]
 
 [ext_resource type="PackedScene" uid="uid://bs6v2yt4d6qsm" path="res://player/char.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cd81reodte14h" path="res://autumn_field_puresky_2k.hdr" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://d247b4dcb8xbt" path="res://label.gd" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://bl37crd3pdbv6" path="res://pressure_plate.tscn" id="4_1bvp3"]
-[ext_resource type="Script" uid="uid://ct1rs68xfmnmm" path="res://block.gd" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://cga1y712yw0ii" path="res://button.tscn" id="6_7mycd"]
-[ext_resource type="Script" uid="uid://bejxq5fphc1wp" path="res://buttonCube.gd" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://bl37crd3pdbv6" path="res://prop/pressure_plate.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://ct1rs68xfmnmm" path="res://prop/block.gd" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cga1y712yw0ii" path="res://prop/button.tscn" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://bejxq5fphc1wp" path="res://prop/buttonCube.gd" id="7_272bh"]
 [ext_resource type="MeshLibrary" uid="uid://dq7oq0uapxve6" path="res://wall/wallLib3d.tres" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://142ts2cqci3b" path="res://skeleton/skullowpoly.tscn" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://bk4ubkqky5tfl" path="res://prop/torch/torch.tscn" id="10_4c57u"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
 
@@ -22,7 +23,7 @@ sky_material = SubResource("PanoramaSkyMaterial_0xm2m")
 background_mode = 2
 sky = SubResource("Sky_ig7tw")
 fog_enabled = true
-fog_light_color = Color(0.347997, 0.338303, 0.371791, 1)
+fog_light_color = Color(0.332881, 0.332881, 0.332881, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0xm2m"]
 
@@ -137,7 +138,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 3, 6)
-light_energy = 11.21
+light_energy = 11.0
 editor_only = true
 omni_range = 754.45
 
@@ -155,7 +156,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0500002, 0.1, 0.0999999)
 shape = SubResource("BoxShape3D_5vw27")
 
 [node name="skullowpoly" parent="." instance=ExtResource("9_kek77")]
-transform = Transform3D(-0.75, 0, -6.5567e-08, 0, 0.75, 0, 6.5567e-08, 0, -0.75, -34.5, 0.212333, 14)
+transform = Transform3D(-0.75, 0, -6.5567e-08, 0, 0.75, 0, 6.5567e-08, 0, -0.75, -34.5, 0.012333, 14)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_kek77")
@@ -182,6 +183,9 @@ shape = SubResource("BoxShape3D_kek77")
 
 [node name="orig" type="Node3D" parent="." groups=["origins"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 0.6, 17)
+
+[node name="torch2" parent="." instance=ExtResource("10_4c57u")]
+transform = Transform3D(-1.98887e-08, 0, 0.455, 0, 0.455, 0, -0.455, 0, -1.98887e-08, -23.8, 1.8, 12)
 
 [connection signal="plateDown" from="pressurePlate" to="Block" method="_on_pressure_plate_plate_down"]
 [connection signal="plateUp" from="pressurePlate" to="Block" method="_on_pressure_plate_plate_up"]
