@@ -170,7 +170,8 @@ skeleton = NodePath("")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="fire"]
 light_color = Color(0.754392, 0.464463, 0.263509, 1)
-light_energy = 2.0
+light_energy = 1.5
+omni_range = 4.5
 
 [node name="torch" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
@@ -182,3 +183,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_kggqu")
 }
 speed_scale = 0.15
+
+[node name="Node3D" type="Node3D" parent="."]

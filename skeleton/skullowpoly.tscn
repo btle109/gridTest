@@ -714,7 +714,7 @@ bones/41/rotation = Quaternion(0, 0, 0, 1)
 bones/41/scale = Vector3(1, 1, 1)
 
 [node name="Plane" type="BoneAttachment3D" parent="skelChar/Skeleton3D"]
-transform = Transform3D(0.886427, 0.0410098, 0.0734539, -0.076862, 0.0787588, 0.883583, 0.0341982, -0.885971, 0.0819465, -0.0135206, 0.620156, 0.145365)
+transform = Transform3D(0.886427, 0.0410099, 0.0734539, -0.076862, 0.0787594, 0.883583, 0.0341982, -0.885971, 0.0819471, -0.0135206, 0.620156, 0.145365)
 bone_name = "Plane"
 bone_idx = 6
 
@@ -723,7 +723,7 @@ mesh = SubResource("ArrayMesh_ajcas")
 skeleton = NodePath("")
 
 [node name="Cylinder_001" type="BoneAttachment3D" parent="skelChar/Skeleton3D"]
-transform = Transform3D(-1.62595, -0.132781, -0.185894, 0.628415, -0.279889, -0.483168, 0.0185488, -2.15694, 0.0741408, 0.014904, 0.286062, 0.111096)
+transform = Transform3D(-1.62595, -0.132782, -0.185895, 0.628415, -0.279887, -0.483168, 0.0185499, -2.15694, 0.0741403, 0.0149041, 0.286062, 0.111096)
 bone_name = "Cylinder.001"
 bone_idx = 12
 
@@ -732,7 +732,7 @@ mesh = SubResource("ArrayMesh_p86l2")
 skeleton = NodePath("")
 
 [node name="Cylinder_007" type="BoneAttachment3D" parent="skelChar/Skeleton3D"]
-transform = Transform3D(1.30734, -0.165468, -0.226216, 0.715698, -0.398157, 0.389026, -0.271842, -1.84402, -0.0636987, -0.0365621, 0.278725, 0.124051)
+transform = Transform3D(1.30734, -0.165468, -0.226215, 0.715694, -0.398154, 0.389026, -0.27184, -1.84402, -0.0636983, -0.0365627, 0.278725, 0.124051)
 bone_name = "Cylinder.007"
 bone_idx = 22
 
@@ -741,7 +741,7 @@ mesh = SubResource("ArrayMesh_js32i")
 skeleton = NodePath("")
 
 [node name="claymore" type="BoneAttachment3D" parent="skelChar/Skeleton3D"]
-transform = Transform3D(4.14403, -10.0291, -0.951795, -9.91754, -3.88058, -2.29026, 1.76952, 1.73781, -10.6071, -0.000428431, 0.2678, 0.292082)
+transform = Transform3D(4.144, -10.0291, -0.95179, -9.91756, -3.88055, -2.29024, 1.7695, 1.7378, -10.6071, -0.000429336, 0.2678, 0.292081)
 bone_name = "claymore"
 bone_idx = 24
 
@@ -783,7 +783,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1.4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1.4)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 8.0
+wait_time = 15.0
 autostart = true
 
 [node name="screaming" type="AudioStreamPlayer3D" parent="."]

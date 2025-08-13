@@ -1,13 +1,15 @@
 extends CharacterBody3D
 
 @export var MoveSpeed: float = 3.0
+@export var orig = Node3D
+@export var enemyRange = Area3D
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
+
 const DEF_CHANCE = 60
 const ATK_CHANCE = 60
 var HP = 60
 
 var player: Node3D = null
-var origin: Node3D = null
 
 var is_attacking = false #if player is in ViewCol, meaning begin attack anim
 var in_range = false  #if player is in Enemy Range
@@ -20,7 +22,8 @@ var sound2 = preload("res://sound/skeletonscream2.mp3")
 
 func _ready() -> void:
 	player = get_tree().get_nodes_in_group("Player")[0]
-	origin = get_tree().get_nodes_in_group("origins")[0]
+	enemyRange.body_entered.connect(_on_enemy_range_body_entered)
+	enemyRange.body_exited.connect(_on_enemy_range_body_exited)
 #	$View.body_entered.connect(_on_attack_zone_body_entered)
 #	$View.body_exited.connect(_on_attack_zone_body_exited)
 	
@@ -28,13 +31,12 @@ func _physics_process(_delta: float) -> void:
 	if alive:
 		if is_attacking:
 			return
-			
 		$AnimationPlayer.play("skelChar|Walk")
 
 		if (in_range):
 			navigation_agent.set_target_position(player.global_position)
 		else:
-			navigation_agent.set_target_position(origin.global_position)
+			navigation_agent.set_target_position(orig.global_position)
 			
 		if navigation_agent.is_navigation_finished():
 			$AnimationPlayer.play("skelChar|rest")
@@ -117,9 +119,13 @@ func hurt(dmg) -> void:
 
 
 func _on_timer_timeout() -> void:
-	if (randi()%100+1 < 30):
-		$screaming.stream = sound2
-		$screaming.play()
+	if (randi()%100+1 < 25):
+		if (randi()%2 == 0):
+			$screaming.stream = sound2
+			$screaming.play()
+		else:
+			$steps.stream = load("res://sound/concrete-footsteps-6752.mp3")
+			$steps.play()
 
 func use() -> void:
 	queue_free();

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cnn5l4mnhbofk"]
+
+[ext_resource type="Texture2D" uid="uid://b170u6wqb2lkp" path="res://import/coffin2_pix.png" id="1_4ojut"]
+
+[resource]
+albedo_color = Color(0.572988, 0.572988, 0.572988, 1)
+albedo_texture = ExtResource("1_4ojut")
+texture_filter = 0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bs6v2yt4d6qsm"]
 
 [ext_resource type="Script" uid="uid://crdonys5n3juq" path="res://player/char.gd" id="1_njpxk"]
-[ext_resource type="Script" uid="uid://0ftllctd0qpf" path="res://camera_3d.gd" id="2_hs5vj"]
+[ext_resource type="Script" uid="uid://0ftllctd0qpf" path="res://misc/camera_3d.gd" id="2_hs5vj"]
 [ext_resource type="ArrayMesh" uid="uid://bhplnxrtp8qly" path="res://player/swordmesh.res" id="2_jk26w"]
 [ext_resource type="AnimationLibrary" uid="uid://cwj0klbeaw5sj" path="res://player/playeranim.res" id="4_t1xym"]
 

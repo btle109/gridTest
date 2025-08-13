@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="gridtest"
-run/main_scene="uid://beh1bcuvryhxi"
+run/main_scene="uid://cupv16mvxcujr"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/show_image=false
+config/icon="uid://cgfue7ydof6tk"
+
+[display]
+
+window/stretch/mode="viewport"
 
 [input]
 
@@ -69,3 +74,4 @@ textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/default_filters/anisotropic_filtering_level=0
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgpleny60vxs"]
+
+[ext_resource type="Script" uid="uid://cs5ien6igwmpn" path="res://prop/door.gd" id="1_5la4y"]
+[ext_resource type="Texture2D" uid="uid://djtlf6xrkdngy" path="res://import/door_albpix.png" id="1_ebj8r"]
+[ext_resource type="Texture2D" uid="uid://bmsew6vopa3nd" path="res://import/door_mtl.jpg" id="2_5la4y"]
+[ext_resource type="Texture2D" uid="uid://bfcv23dysmsy6" path="res://import/door_nrl.jpg" id="3_wxxqw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffe0i"]
+albedo_texture = ExtResource("1_ebj8r")
+metallic = 1.0
+metallic_texture = ExtResource("2_5la4y")
+normal_enabled = true
+normal_texture = ExtResource("3_wxxqw")
+uv1_scale = Vector3(4.04, 4.04, 4.04)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ffe0i"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("StandardMaterial3D_ffe0i")
+add_uv2 = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k1tus"]
+size = Vector3(4.6, 4.9, 0.4)
+
+[node name="Door" type="Area3D"]
+collision_layer = 3
+script = ExtResource("1_5la4y")
+
+[node name="doorMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.56, 0, 0, 0, 4.8, 0, 0, 0, 0.3, 0, 1.2, 0)
+mesh = SubResource("BoxMesh_ffe0i")
+
+[node name="doorCol" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 1.25, 1.49012e-08)
+shape = SubResource("BoxShape3D_k1tus")
+
+[node name="doorSound" type="AudioStreamPlayer3D" parent="."]

@@ -71,7 +71,6 @@ func process_swing():
 
 func _physics_process(_delta):
 	if HP <= 0 or  Input.is_action_pressed("Reset"):
-		HP = 100
 		get_tree().reload_current_scene()
 	if Input.is_action_pressed("Quit"):
 		get_tree().quit()
@@ -85,23 +84,26 @@ func _physics_process(_delta):
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "transform", transform.translated_local(Vector3.FORWARD * 2), TRAVEL_TIME)
 		animation.play("bob")
-
+		print(global_position.x, " ", global_position.z);
 		
 	if Input.is_action_pressed("back") and not back_ray.is_colliding():
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "transform", transform.translated_local(Vector3.BACK * 2), TRAVEL_TIME)
 		animation.play("bob")
-		
+		print(global_position.x, " ", global_position.z);
+
 	if Input.is_action_pressed("left") and not left_ray.is_colliding():
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "transform", transform.translated_local(Vector3.LEFT * 2), TRAVEL_TIME)
 		animation.play("bob")
-		
+		print(global_position.x, " ", global_position.z);
+	
 	if Input.is_action_pressed("right") and not right_ray.is_colliding():
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "transform", transform.translated_local(Vector3.RIGHT * 2), TRAVEL_TIME)
 		animation.play("bob")
-		
+		print(round(global_position.x), " ", round(global_position.z));
+	
 	if Input.is_action_pressed("turnLeft"):
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "transform:basis", transform.basis.rotated(Vector3.UP, PI / 2), TRAVEL_TIME)
