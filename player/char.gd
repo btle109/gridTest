@@ -8,10 +8,12 @@ const TRAVEL_TIME := 0.3
 @onready var right_ray := $CharacterBody3D/rightRay
 @onready var animation := $animation
 @export var enemy: CharacterBody3D = null
+@export var label : Label
 
-const DEF_CHANCE = 45
-const ATK_CHANCE = 60
-
+var DEF_CHANCE = 45
+var ATK_CHANCE = 60
+var atk_dmg = 10
+var alive = true;
 var HP = 100
 var dirVec := Vector2.ZERO
 var dragging := false
@@ -19,6 +21,7 @@ var swing_ready := true
 const SWING_THRESHOLD := 40 
 var tween : Tween
 var in_range = false
+
 var sound = preload("res://sound/sound2.mp3")
 
 func snap_to_grid(pos: Vector3, grid_size: float = 2.0) -> Vector3:
@@ -70,10 +73,10 @@ func process_swing():
 
 
 func _physics_process(_delta):
-	if HP <= 0 or  Input.is_action_pressed("Reset"):
-		get_tree().reload_current_scene()
-	if Input.is_action_pressed("Quit"):
-		get_tree().quit()
+	if (HP <= 0 and alive):
+		alive = false;
+		die()
+
 	if tween is Tween:
 		if tween.is_running():
 			return
@@ -84,19 +87,19 @@ func _physics_process(_delta):
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "transform", transform.translated_local(Vector3.FORWARD * 2), TRAVEL_TIME)
 		animation.play("bob")
-		print(global_position.x, " ", global_position.z);
+		print(round(global_position.x), " ", round(global_position.z));
 		
 	if Input.is_action_pressed("back") and not back_ray.is_colliding():
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "transform", transform.translated_local(Vector3.BACK * 2), TRAVEL_TIME)
 		animation.play("bob")
-		print(global_position.x, " ", global_position.z);
+		print(round(global_position.x), " ", round(global_position.z));
 
 	if Input.is_action_pressed("left") and not left_ray.is_colliding():
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "transform", transform.translated_local(Vector3.LEFT * 2), TRAVEL_TIME)
 		animation.play("bob")
-		print(global_position.x, " ", global_position.z);
+		print(round(global_position.x), " ", round(global_position.z));
 	
 	if Input.is_action_pressed("right") and not right_ray.is_colliding():
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
@@ -137,7 +140,7 @@ func _on_attack_range_body_entered(body: Node3D) -> void:
 		var prob = randi()%100 + 1
 		if (prob < ATK_CHANCE):
 			sound = load("res://sound/smashsound.mp3")
-			body.hurt(10)
+			body.hurt(atk_dmg)
 		else:
 			sound = load("res://sound/sound2.mp3")
 		$AudioStreamPlayer.stream = sound
@@ -147,3 +150,15 @@ func _on_attack_range_body_entered(body: Node3D) -> void:
 func _on_attack_range_body_exited(body: Node3D) -> void:
 	if body.is_in_group("Enemy"):
 		in_range = false
+
+func die()->void:
+		$hurt.play("playeranim/death")
+		var hitsound = load("res://sound/sound.wav")
+		$hitsounds.stream = hitsound
+		$hitsounds.play()
+		set_process_input(false)
+		$deathTimer.start()
+		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_property(self, "transform", transform.translated_local(Vector3.DOWN * 0.125), 1)
+func _on_death_timer_timeout() -> void:
+	get_tree().change_scene_to_file("res://scenes/death.tscn")	

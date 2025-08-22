@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bs6v2yt4d6qsm"]
+[gd_scene load_steps=14 format=3 uid="uid://bs6v2yt4d6qsm"]
 
 [ext_resource type="Script" uid="uid://crdonys5n3juq" path="res://player/char.gd" id="1_njpxk"]
 [ext_resource type="Script" uid="uid://0ftllctd0qpf" path="res://misc/camera_3d.gd" id="2_hs5vj"]
@@ -21,8 +21,35 @@ fill_from = Vector2(0.517094, 0.987179)
 fill_to = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
 
+[sub_resource type="Gradient" id="Gradient_tbgd1"]
+offsets = PackedFloat32Array(0, 0.963303, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lsut1"]
+gradient = SubResource("Gradient_tbgd1")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_jk26w"]
 size = Vector3(2.2, 2, 3)
+
+[sub_resource type="Animation" id="Animation_aigvq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody3D/Camera3D/death:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_orhhm"]
+_data = {
+&"RESET": SubResource("Animation_aigvq")
+}
 
 [node name="char" type="Node3D" groups=["Player"]]
 script = ExtResource("1_njpxk")
@@ -79,6 +106,15 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_tbgd1")
 
+[node name="death" type="TextureRect" parent="CharacterBody3D/Camera3D"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_lsut1")
+
 [node name="animation" type="AnimationPlayer" parent="."]
 libraries = {
 &"": ExtResource("4_t1xym")
@@ -105,8 +141,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="hurt" type="AnimationPlayer" parent="."]
 libraries = {
+&"": SubResource("AnimationLibrary_orhhm"),
 &"playeranim": ExtResource("4_t1xym")
 }
 
+[node name="deathTimer" type="Timer" parent="."]
+wait_time = 1.5
+
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[connection signal="timeout" from="deathTimer" to="." method="_on_death_timer_timeout"]

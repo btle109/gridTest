@@ -4,9 +4,9 @@ extends CharacterBody3D
 @export var orig = Node3D
 @export var enemyRange = Area3D
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
-
-const DEF_CHANCE = 60
-const ATK_CHANCE = 60
+@export var label : Label 
+const DEF_CHANCE = 45
+const ATK_CHANCE = 45
 var HP = 60
 
 var player: Node3D = null
@@ -28,6 +28,7 @@ func _ready() -> void:
 #	$View.body_exited.connect(_on_attack_zone_body_exited)
 	
 func _physics_process(_delta: float) -> void:
+	global_position.y = 0
 	if alive:
 		if is_attacking:
 			return
@@ -128,6 +129,8 @@ func _on_timer_timeout() -> void:
 			$steps.play()
 
 func use() -> void:
+	label.text = "A skeleton."
+	label.reset();
 	queue_free();
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

@@ -3,7 +3,7 @@ extends Node3D
 @export var Connectable = Area3D
 var down = false
 var tween : Tween
-
+@export var label : Label
 func use():
 	if(!down):
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
@@ -12,3 +12,6 @@ func use():
 		Connectable.unlock()
 		Connectable.use()
 		down = true;
+	else:
+		label.text = "Nothing happens."
+		label.reset()

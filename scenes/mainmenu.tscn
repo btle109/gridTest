@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cupv16mvxcujr"]
+[gd_scene load_steps=5 format=3 uid="uid://cupv16mvxcujr"]
 
 [ext_resource type="Script" uid="uid://c88l0j6rf1xd4" path="res://scenes/menuscript.gd" id="1_2hud6"]
+[ext_resource type="FontFile" uid="uid://bswbfb2a61rur" path="res://fonts/GregorianFLF.ttf" id="2_3vvtq"]
 [ext_resource type="Theme" uid="uid://d2papxoidqsqe" path="res://fonts/theme.tres" id="2_87egg"]
+[ext_resource type="Texture2D" uid="uid://cgfue7ydof6tk" path="res://bale.svg" id="3_r3g3c"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -13,15 +15,13 @@ grow_vertical = 2
 
 [node name="BUTTONS" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.405
-anchor_top = 0.523
-anchor_right = 0.594
-anchor_bottom = 0.798
-offset_left = 0.439972
-offset_top = 0.0960083
-offset_right = -89.288
-offset_bottom = -73.104
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 66.0
+offset_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.7, 1.7)
@@ -34,44 +34,51 @@ anchor_left = 0.193
 anchor_top = 0.163
 anchor_right = 0.807
 anchor_bottom = 0.463
-offset_left = -0.0200195
-offset_top = -0.0489998
-offset_right = 0.0200119
-offset_bottom = 0.0509949
+offset_left = -37.5
+offset_top = -5.34311
+offset_right = 37.5
+offset_bottom = 33.6569
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_3vvtq")
 theme_override_font_sizes/font_size = 22
-text = "BEGIN"
+text = "Begin"
 
 [node name="QUIT" type="Button" parent="BUTTONS"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.316
 anchor_top = 0.583
 anchor_right = 0.684
-anchor_bottom = 0.857
-offset_left = 0.0519905
-offset_top = -0.0384521
-offset_right = -0.0520096
-offset_bottom = -0.000457764
+anchor_bottom = 0.583
+offset_left = -23.5
+offset_top = 35.0688
+offset_right = 23.5
+offset_bottom = 66.0688
 grow_horizontal = 2
 grow_vertical = 2
-text = "QUIT"
+theme_override_fonts/font = ExtResource("2_3vvtq")
+text = "Quit"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.215
-anchor_top = 0.113
-anchor_right = 0.786
-anchor_bottom = 0.657
-offset_left = 64.32
-offset_top = 125.776
-offset_right = -65.472
-offset_bottom = -109.736
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -194.5
+offset_top = -63.5
+offset_right = 194.5
+offset_bottom = 53.5
 grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("2_87egg")
 text = "CRAWL"
 horizontal_alignment = 1
+
+[node name="Bale" type="Sprite2D" parent="."]
+position = Vector2(360, 120)
+scale = Vector2(0.362, 0.362)
+texture = ExtResource("3_r3g3c")
 
 [connection signal="pressed" from="BUTTONS/START" to="BUTTONS" method="_on_start_pressed"]
 [connection signal="pressed" from="BUTTONS/QUIT" to="BUTTONS" method="_on_quit_pressed"]
