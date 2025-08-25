@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtgk0h7c6hvh5"]
+
+[ext_resource type="PackedScene" uid="uid://bg8nbs3cnktk6" path="res://import/skullprop2/skullprop2.blend" id="1_0uet7"]
+
+[node name="skullprop2" instance=ExtResource("1_0uet7")]

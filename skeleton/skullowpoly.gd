@@ -5,8 +5,8 @@ extends CharacterBody3D
 @export var enemyRange = Area3D
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @export var label : Label 
-const DEF_CHANCE = 45
-const ATK_CHANCE = 45
+const DEF_CHANCE = 50
+const ATK_CHANCE = 50
 var HP = 60
 
 var player: Node3D = null

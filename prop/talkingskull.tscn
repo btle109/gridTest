@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://c81otc8f0tn48"]
+
+[ext_resource type="Script" uid="uid://dbmyhlfx53qxv" path="res://prop/talkingskull.gd" id="1_mtn6m"]
+[ext_resource type="FontFile" uid="uid://bswbfb2a61rur" path="res://fonts/GregorianFLF.ttf" id="2_wbrmb"]
+[ext_resource type="PackedScene" uid="uid://dtgk0h7c6hvh5" path="res://prop/skullprop_2.tscn" id="3_dlr54"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5kxex"]
+
+[node name="Talkingskull" type="Area3D"]
+collision_layer = 3
+script = ExtResource("1_mtn6m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_5kxex")
+
+[node name="TextBox" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -270.0
+offset_right = 360.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Panel" type="Panel" parent="TextBox"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -125.0
+offset_right = 125.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TextBox/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.008
+anchor_bottom = 0.988
+offset_bottom = -1.52588e-05
+theme_override_fonts/font = ExtResource("2_wbrmb")
+theme_override_font_sizes/font_size = 36
+text = "\"Go forth and have no fear.\""
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="skullprop2" parent="." instance=ExtResource("3_dlr54")]
+transform = Transform3D(-1.1, 0, 9.61651e-08, 0, 1.1, 0, -9.61651e-08, 0, -1.1, 0, -1, 0)

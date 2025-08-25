@@ -9,7 +9,7 @@ const TRAVEL_TIME := 0.3
 @onready var animation := $animation
 @export var enemy: CharacterBody3D = null
 @export var label : Label
-
+var walkForward = false;
 var DEF_CHANCE = 45
 var ATK_CHANCE = 60
 var atk_dmg = 10
@@ -70,8 +70,7 @@ func process_swing():
 		$AudioStreamPlayer.stream = sound
 	$AudioStreamPlayer.play()
 	dirVec = Vector2.ZERO
-
-
+		
 func _physics_process(_delta):
 	if (HP <= 0 and alive):
 		alive = false;
@@ -114,7 +113,13 @@ func _physics_process(_delta):
 	if Input.is_action_pressed("turnRight"):
 		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "transform:basis", transform.basis.rotated(Vector3.UP, -PI / 2), TRAVEL_TIME)
-
+	
+	if walkForward and not front_ray.is_colliding():
+		tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_property(self, "transform", transform.translated_local(Vector3.FORWARD * 2), TRAVEL_TIME)
+		animation.play("bob")
+		print(round(global_position.x), " ", round(global_position.z));
+		walkForward = false;
 func hurt(dmg) -> void:
 	var prob = randi()%100 + 1
 	var hitsound
@@ -162,3 +167,10 @@ func die()->void:
 		tween.tween_property(self, "transform", transform.translated_local(Vector3.DOWN * 0.125), 1)
 func _on_death_timer_timeout() -> void:
 	get_tree().change_scene_to_file("res://scenes/death.tscn")	
+	
+func spin(spinAmt, spinLen, walk) -> void:
+	tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT);
+	tween.tween_property(self, "transform:basis", transform.basis.rotated(Vector3.UP, spinAmt), spinLen);
+	
+	walkForward = walk;
+	

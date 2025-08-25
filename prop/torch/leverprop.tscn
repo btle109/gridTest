@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cob8h423sjy0k" path="res://prop/leverprop.gd" id="3_n4r4y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_imuw7"]
-size = Vector3(3, 5, 7)
+size = Vector3(3, 5, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c710i"]
 resource_name = "torch"
@@ -125,7 +125,7 @@ collision_layer = 3
 script = ExtResource("3_n4r4y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1.5)
 shape = SubResource("BoxShape3D_imuw7")
 
 [node name="Lever2" type="MeshInstance3D" parent="."]

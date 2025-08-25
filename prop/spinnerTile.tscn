@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bswlu7irs3mpi"]
+
+[ext_resource type="Script" uid="uid://dm6bwbsmgr40n" path="res://prop/spinnerTile.gd" id="1_p6ksu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bck21"]
+size = Vector3(1, 3, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bck21"]
+
+[node name="SpinnerTile" type="Node3D"]
+script = ExtResource("1_p6ksu")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_bck21")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -0.1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_bck21")
+skeleton = NodePath("../..")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
