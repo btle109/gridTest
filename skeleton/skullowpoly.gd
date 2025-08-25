@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 @export var MoveSpeed: float = 3.0
-@export var orig = Node3D
-@export var enemyRange = Area3D
+@export var orig : Node3D
+@export var enemyRange : Area3D
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @export var label : Label 
 const DEF_CHANCE = 50
@@ -22,10 +22,15 @@ var sound2 = preload("res://sound/skeletonscream2.mp3")
 
 func _ready() -> void:
 	player = get_tree().get_nodes_in_group("Player")[0]
-	enemyRange.body_entered.connect(_on_enemy_range_body_entered)
-	enemyRange.body_exited.connect(_on_enemy_range_body_exited)
+	if enemyRange:
+		enemyRange.body_entered.connect(_on_enemy_range_body_entered)
+		enemyRange.body_exited.connect(_on_enemy_range_body_exited)
 #	$View.body_entered.connect(_on_attack_zone_body_entered)
 #	$View.body_exited.connect(_on_attack_zone_body_exited)
+
+func init() -> void:
+	enemyRange.body_entered.connect(_on_enemy_range_body_entered)
+	enemyRange.body_exited.connect(_on_enemy_range_body_exited)
 	
 func _physics_process(_delta: float) -> void:
 	global_position.y = 0

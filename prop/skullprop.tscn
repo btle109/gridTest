@@ -74,7 +74,9 @@ shadow_mesh = SubResource("ArrayMesh_j5ygi")
 [sub_resource type="BoxShape3D" id="BoxShape3D_qw1fr"]
 size = Vector3(3.5, 1.5, 3)
 
-[node name="skullprop" type="Node3D"]
+[node name="skullprop" type="Area3D"]
+collision_layer = 3
+script = ExtResource("2_qw1fr")
 
 [node name="sub01" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.0459, 0, 0, 0, 0, -0.0459, 0, 0.0459, 0, 0, 2.45, 0)
@@ -86,11 +88,6 @@ transform = Transform3D(0.0192465, 0.00758023, -0.0409747, 0.0138812, -0.0437226
 mesh = SubResource("ArrayMesh_8ik7f")
 skeleton = NodePath("")
 
-[node name="Area3D" type="Area3D" parent="."]
-collision_layer = 3
-script = ExtResource("2_qw1fr")
-text = "Skeletons."
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.25, -0.7)
 shape = SubResource("BoxShape3D_qw1fr")

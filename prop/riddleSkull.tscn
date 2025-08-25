@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpu2topxphmyo"]
+
+[ext_resource type="PackedScene" uid="uid://c81otc8f0tn48" path="res://prop/talkingskull.tscn" id="1_iqcvt"]
+[ext_resource type="Script" uid="uid://vgithv3p3iyb" path="res://prop/riddle_skull.gd" id="2_h00ne"]
+
+[node name="Talkingskull" instance=ExtResource("1_iqcvt")]
+script = ExtResource("2_h00ne")
+
+[node name="Panel" parent="TextBox" index="0"]
+offset_left = -175.0
+offset_top = -179.0
+offset_right = 175.0
+
+[node name="Label" parent="TextBox/Panel" index="0"]
+theme_override_font_sizes/font_size = 17
+text = "You won't find the answer with your eye
+You can only imagine it, you'll know why.
+
+You may believe it to be complex,
+But have no fear, it is no hex.
+
+The answer is a number which is one past the eighth,
+Go on and enter it, have some faith.
+
+Think hard and think carefully, you must be sly.
+For if you're wrong, in this dungeon you shall die."
+
+[node name="LineEdit" type="LineEdit" parent="TextBox" index="1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.452
+anchor_top = 0.756
+anchor_right = 0.548
+anchor_bottom = 0.814
+offset_left = 0.278748
+offset_top = 0.259979
+offset_right = -0.278778
+offset_bottom = -0.0599976
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "enter"
+alignment = 1

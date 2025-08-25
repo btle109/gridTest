@@ -400,7 +400,7 @@ bind/32/bone = -1
 bind/32/pose = Transform3D(-0.495799, 0.854621, -0.154277, -0.0666954, 0.139658, 0.98795, 0.865864, 0.500119, -0.0122493, 0.4319, 0.0941848, 0.30006)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f6sjy"]
-size = Vector3(1.4, 2, 2.2)
+size = Vector3(1.4, 2, 2.4)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bbdal"]
 radius = 1.5
@@ -769,7 +769,7 @@ speed_scale = 0.62
 [node name="View" type="Area3D" parent="."]
 
 [node name="ViewCol" type="CollisionShape3D" parent="View"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 1.8, 1.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 1.8, 1.7)
 shape = SubResource("BoxShape3D_f6sjy")
 
 [node name="ObjCol" type="CollisionShape3D" parent="."]

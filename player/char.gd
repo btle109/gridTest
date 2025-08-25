@@ -169,8 +169,9 @@ func _on_death_timer_timeout() -> void:
 	get_tree().change_scene_to_file("res://scenes/death.tscn")	
 	
 func spin(spinAmt, spinLen, walk) -> void:
+	set_process_input(false)
 	tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT);
 	tween.tween_property(self, "transform:basis", transform.basis.rotated(Vector3.UP, spinAmt), spinLen);
-	
+	set_process_input(true)
 	walkForward = walk;
 	

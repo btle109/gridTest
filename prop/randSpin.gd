@@ -5,8 +5,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	var rand = randi()%2
 	if (rand == 1):
 		spinAmt *= -1;
-	rand = randi()%2
-	if (rand == 0):
+	rand = randi()%10
+	if (rand < 2):
 		walk = false;
 	else:
 		walk = true

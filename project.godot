@@ -20,6 +20,8 @@ config/icon="uid://cgfue7ydof6tk"
 
 window/size/viewport_width=720
 window/size/viewport_height=540
+window/size/mode=3
+window/size/borderless=true
 window/stretch/mode="viewport"
 
 [input]

@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://be3t6xp40ljjj"]
+
+[ext_resource type="PackedScene" uid="uid://cupv16mvxcujr" path="res://scenes/mainmenu.tscn" id="1_p7m4f"]
+[ext_resource type="Script" uid="uid://chyuhkxlf72g2" path="res://endbuttons.gd" id="2_bvfni"]
+[ext_resource type="Texture2D" uid="uid://bixvydk43kh0t" path="res://bale2.png" id="3_bvfni"]
+[ext_resource type="AudioStream" uid="uid://lbm87dgxxtjq" path="res://sound/346814__robinhood76__06684-children-hooray-joy-shout.wav" id="3_s4tl2"]
+
+[node name="UI" instance=ExtResource("1_p7m4f")]
+
+[node name="BUTTONS" parent="." index="0"]
+script = ExtResource("2_bvfni")
+
+[node name="START" parent="BUTTONS" index="0"]
+offset_left = -54.0
+offset_top = -8.28429
+offset_right = 54.0
+offset_bottom = 30.7157
+text = "Main Menu"
+
+[node name="Label" parent="." index="1"]
+offset_left = -238.0
+offset_top = -80.5
+offset_right = 238.0
+offset_bottom = 36.5
+text = "You escaped!"
+
+[node name="Bale" parent="." index="2"]
+position = Vector2(360, 114)
+scale = Vector2(0.725, 0.725)
+texture = ExtResource("3_bvfni")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource("3_s4tl2")
+autoplay = true
